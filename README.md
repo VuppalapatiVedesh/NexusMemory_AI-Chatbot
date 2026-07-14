@@ -110,17 +110,6 @@ pip install -r requirements.txt
 
 ---
 
-## Screenshots Placeholder
-
-Once running, the application features:
-- **Desktop Sidebar view**: Showing information, tech stack, and clear button.
-- **Responsive Layout**: Hides the sidebar on mobile devices for optimized focus on messaging.
-- **Glassmorphic Theme**: Dark gradient background with subtle neon ambient lights.
-
-*(Add screenshots here when deploying to GitHub)*
-
----
-
 ## Future Improvements
 
 For further iterations, consider adding:

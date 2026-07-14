@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NexusMemory AI - Advanced Chatbot</title>
+    
+    <!-- Google Fonts for premium typography -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=Fira+Code:wght@400;500&display=swap" rel="stylesheet">
+    
+    <!-- FontAwesome for high-quality iconography -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <!-- Highlight.js for code block syntax highlighting inside chat bubbles -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/tokyo-night-dark.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
+    
+    <!-- Marked.js for rendering markdown output from the LLM -->
+    <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+    
+    <!-- Custom styling -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <!-- Premium background glowing gradient orbs -->
+    <div class="glow-orb glow-orb-1"></div>
+    <div class="glow-orb glow-orb-2"></div>
+    
+    <div class="app-container">
+        <!-- Sidebar - features and session stats (collapsible/responsive) -->
+        <aside class="sidebar">
+            <div class="brand">
+                <div class="logo-icon">
+                    <i class="fa-solid fa-brain-circuit"></i>
+                </div>
+                <h2>NexusMemory <span>AI</span></h2>
+            </div>
+            
+            <div class="sidebar-section">
+                <h3>About This Chatbot</h3>
+                <p>An advanced conversational AI chatbot featuring long-term session memory. It retains context, tracks preferences, and responds intelligently.</p>
+            </div>
+            
+            <div class="sidebar-section">
+                <h3>Tech Stack</h3>
+                <div class="tech-tags">
+                    <span class="tech-tag"><i class="fa-brands fa-python"></i> Python</span>
+                    <span class="tech-tag"><i class="fa-solid fa-server"></i> Flask</span>
+                    <span class="tech-tag"><i class="fa-brands fa-js"></i> Vanilla JS</span>
+                    <span class="tech-tag"><i class="fa-solid fa-cloud"></i> Groq LLM</span>
+                </div>
+            </div>
+            
+            <div class="sidebar-section info-box">
+                <h4><i class="fa-solid fa-key"></i> Memory Info</h4>
+                <p>Every message in this session is passed back to the LLM. If you want a fresh start, use the clear memory button.</p>
+            </div>
+            
+            <button id="clear-chat-btn-sidebar" class="action-btn clear-btn">
+                <i class="fa-solid fa-trash-can"></i> Clear Session Memory
+            </button>
+            
+            <footer class="sidebar-footer">
+                <p>GitHub Ready &bull; College Project</p>
+            </footer>
+        </aside>
+        
+        <!-- Main Chat Area -->
+        <main class="chat-main">
+            <!-- Header -->
+            <header class="chat-header">
+                <div class="header-left">
+                    <div class="ai-avatar-header">
+                        <i class="fa-solid fa-robot"></i>
+                    </div>
+                    <div class="ai-status">
+                        <h3>Nexus Assistant</h3>
+                        <div class="status-indicator">
+                            <span class="dot pulse"></span>
+                            <span class="status-text">Online &bull; Llama-3.3</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="header-right">
+                    <button id="clear-chat-btn-header" class="action-btn-icon" title="Clear conversation history">
+                        <i class="fa-solid fa-arrows-rotate"></i>
+                    </button>
+                </div>
+            </header>
+            
+            <!-- Message Feed -->
+            <div class="messages-container" id="messages-container">
+                <!-- Welcome/Introduction Card -->
+                <div class="welcome-card" id="welcome-card">
+                    <div class="welcome-icon">
+                        <i class="fa-solid fa-comment-dots"></i>
+                    </div>
+                    <h2>Welcome to NexusMemory AI!</h2>
+                    <p>I am your advanced AI chatbot, powered by Groq and configured with persistent, long-term session memory. Ask me anything, and I'll keep track of our conversation context!</p>
+                    <div class="suggested-prompts">
+                        <button class="suggested-prompt-btn" onclick="useSuggestedPrompt('Hi, my name is John and I study computer science.')">
+                            "Hi, my name is John..."
+                        </button>
+                        <button class="suggested-prompt-btn" onclick="useSuggestedPrompt('Explain quantum computing in simple terms.')">
+                            "Explain quantum computing..."
+                        </button>
+                        <button class="suggested-prompt-btn" onclick="useSuggestedPrompt('Write a clean Python function to calculate Fibonacci.')">
+                            "Write a Python function..."
+                        </button>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Input Area -->
+            <footer class="chat-input-area">
+                <!-- Error banner inside the interface -->
+                <div id="error-banner" class="error-banner hidden">
+                    <span class="error-text"></span>
+                    <button class="close-error" onclick="hideError()">&times;</button>
+                </div>
+                
+                <form id="chat-form" class="chat-form">
+                    <input 
+                        type="text" 
+                        id="user-input" 
+                        placeholder="Type a message or ask a question..." 
+                        autocomplete="off" 
+                        required
+                    >
+                    <button type="submit" id="send-btn" class="send-btn" title="Send message">
+                        <i class="fa-solid fa-paper-plane"></i>
+                    </button>
+                </form>
+            </footer>
+        </main>
+    </div>
+    
+    <!-- Custom client-side logic script -->
+    <script src="{{ url_for('static', filename='script.js') }}"></script>
+</body>
+</html>
